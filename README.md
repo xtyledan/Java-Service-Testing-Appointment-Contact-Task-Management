@@ -1,5 +1,9 @@
 # Java Service Testing and Software Quality
 
+[![Java service tests](https://github.com/xtyledan/Java-Service-Testing-Appointment-Contact-Task-Management/actions/workflows/java-tests.yml/badge.svg)](https://github.com/xtyledan/Java-Service-Testing-Appointment-Contact-Task-Management/actions/workflows/java-tests.yml)
+
+**A test-driven Java learning project:** implement three small domain services, enforce input constraints, and run JUnit 5 tests with a reproducible Maven build.
+
 A Java coursework project implementing **appointment, contact, and task management services**, with unit tests focused on validating inputs and checking service behavior.
 
 ## What is in this repository?
@@ -17,11 +21,19 @@ The services demonstrate basic object management and field-validation rules. The
 - Java
 - JUnit 5 (Jupiter)
 
-## Running the tests
+## Run the tests
 
-This repository contains standalone Java source and test files, but **does not currently include a Maven or Gradle build configuration**.
+Requirements: Java 11 or newer and Apache Maven 3.9+. GitHub Actions runs the suite on Temurin Java 17.
 
-To run the tests locally, open the project in a Java IDE, configure a Java JDK and JUnit 5 as a test dependency, then run the `*Test.java` classes with the IDE's JUnit test runner. The exact Java version and test dependency versions have not been pinned in this repository.
+```bash
+git clone https://github.com/xtyledan/Java-Service-Testing-Appointment-Contact-Task-Management.git
+cd Java-Service-Testing-Appointment-Contact-Task-Management
+mvn test
+```
+
+The project retains its original flat Java source layout. The supplied `pom.xml` separates `*Test.java` files during compilation and uses JUnit Jupiter with Maven Surefire. [View the automated test runs](https://github.com/xtyledan/Java-Service-Testing-Appointment-Contact-Task-Management/actions/workflows/java-tests.yml).
+
+**Example:** The `ContactServiceTest.java` tests contact creation and expected field constraints. `AppointmentServiceTest.java` and `TaskServiceTest.java` cover their corresponding domain services. These are unit tests, not a live web demo; no application screenshot would be representative.
 
 ## Engineering takeaways
 
@@ -32,6 +44,10 @@ To run the tests locally, open the project in a Java IDE, configure a Java JDK a
 
 ## Scope and limitations
 
-This is a focused educational implementation, **not** a deployed web application or security-audited product. The repository does not currently demonstrate authentication, penetration testing, CI/CD pipelines, integration testing, or end-to-end testing. These are potential future extensions, not completed features.
+This is a focused educational implementation, **not** a deployed web application or security-audited product. The repository does not demonstrate authentication, penetration testing, integration testing, or end-to-end testing. A GitHub Actions CI workflow now runs the unit tests. These are potential future extensions, not completed features.
 
 For a broader look at my work, see my [GitHub profile](https://github.com/xtyledan) and [graduate computer science portfolio](https://github.com/xtyledan/ms-computer-science-coursework).
+
+## License
+
+[MIT License](LICENSE).
