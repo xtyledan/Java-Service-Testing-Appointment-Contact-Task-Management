@@ -1,32 +1,37 @@
-# Ensuring Functionality and Security in Software Development
+# Java Service Testing and Software Quality
 
-## How Do I Ensure That My Code, Program, or Software Is Functional and Secure?
+A Java coursework project implementing **appointment, contact, and task management services**, with unit tests focused on validating inputs and checking service behavior.
 
-Delivering a reliable and secure product requires a multi-layered approach to both functionality and security. Here’s how I approached these key aspects in this project:
+## What is in this repository?
 
-- **Rigorous Testing**: To guarantee functionality, I implemented a comprehensive testing suite that included unit, integration, and end-to-end tests, covering all core components of the codebase. Automated Continuous Integration (CI) and Continuous Deployment (CD) pipelines were set up to run these tests consistently, providing immediate feedback on code changes and ensuring stability throughout the development cycle.
-  
-- **Security Best Practices**: For security, I adhered strictly to industry standards:
-  - **Dependency Management**: Regularly updated dependencies to protect against known vulnerabilities.
-  - **Collaborative Code Reviews**: Engaged in team-based code reviews, leveraging multiple perspectives to identify and address potential security issues.
-  - **Authentication and Authorization**: Implemented robust access controls to ensure that only authorized users could interact with sensitive parts of the application.
-  - **Security Audits and Penetration Testing**: Regular audits and targeted penetration testing further safeguarded the application against potential threats, enhancing overall resilience.
+| Component | Implementation | Unit tests |
+| --- | --- | --- |
+| Appointments | `Appointment.java`, `AppointmentService.java` | `AppointmentTest.java`, `AppointmentServiceTest.java` |
+| Contacts | `Contact.java`, `ContactService.java` | `ContactTest.java`, `ContactServiceTest.java` |
+| Tasks | `Task.java`, `TaskService.java` | `TaskTest.java`, `TaskServiceTest.java` |
 
-## How Do I Interpret User Needs and Incorporate Them Into a Program?
+The services demonstrate basic object management and field-validation rules. The tests use **JUnit Jupiter (JUnit 5)**, including test fixtures and assertions for expected and invalid inputs.
 
-Understanding and addressing user needs is central to developing software that truly meets its audience's expectations. Here’s how I approached user-centered development in this project:
+## Technology
 
-- **User Research**: Conducted in-depth user interviews and surveys to gather insights directly from end-users, gaining a clear understanding of their needs, pain points, and expectations.
-- **User Stories and Personas**: Based on this research, I created user stories and personas that mapped out the user journey, serving as a foundational guide for feature prioritization and design decisions.
-- **Iterative Feedback Loops**: By engaging with users at various stages through prototypes and early versions, I could continuously refine the product to ensure it aligned with user requirements and delivered a seamless experience.
+- Java
+- JUnit 5 (Jupiter)
 
-## How Do I Approach Designing Software?
+## Running the tests
 
-Designing software involves balancing technical objectives, user experience, and scalability. My approach to design in this project followed a structured, collaborative process:
+This repository contains standalone Java source and test files, but **does not currently include a Maven or Gradle build configuration**.
 
-1. **Define Scope and Objectives**: Clearly defined the project’s goals, constraints, and scope, allowing me to align the architecture with both functional and technical requirements.
-2. **Modular Design Architecture**: Adopted a modular design strategy, breaking down the system into manageable components with well-defined interfaces to facilitate development, testing, and scalability.
-3. **Collaborative Design Reviews**: Regular design review sessions were conducted with stakeholders—developers, designers, and end-users—to gather feedback, address potential challenges, and make informed design decisions early in the process.
-4. **User Experience (UX) Focus**: Integrated UX principles to create a visually intuitive interface, ensuring that the final product was both functional and appealing to users.
+To run the tests locally, open the project in a Java IDE, configure a Java JDK and JUnit 5 as a test dependency, then run the `*Test.java` classes with the IDE's JUnit test runner. The exact Java version and test dependency versions have not been pinned in this repository.
 
-This structured approach resulted in a product that met technical requirements, provided an optimal user experience, and was prepared for future scalability.
+## Engineering takeaways
+
+- Keep domain objects and their managing services separate.
+- Validate required fields and constraints.
+- Test normal inputs and invalid or boundary cases.
+- Use repeatable unit tests to detect regressions when implementation details change.
+
+## Scope and limitations
+
+This is a focused educational implementation, **not** a deployed web application or security-audited product. The repository does not currently demonstrate authentication, penetration testing, CI/CD pipelines, integration testing, or end-to-end testing. These are potential future extensions, not completed features.
+
+For a broader look at my work, see my [GitHub profile](https://github.com/xtyledan) and [graduate computer science portfolio](https://github.com/xtyledan/ms-computer-science-coursework).
