@@ -77,4 +77,32 @@ class AppointmentTest {
         assertTrue(appt.getDescription().length() <= 50);
         assertEquals(description, appt.getDescription());
     }
+
+    @Test
+    void testConstructorCopiesInputDate() {
+        Date provided = new Date(System.currentTimeMillis() + 86_400_000L);
+        Appointment appt = new Appointment("1234567890", provided);
+        long expected = appt.getAppointmentDate().getTime();
+        provided.setTime(0L);
+        assertEquals(expected, appt.getAppointmentDate().getTime());
+    }
+
+    @Test
+    void testSetterCopiesInputDate() {
+        Appointment appt = new Appointment("1234567890");
+        Date provided = new Date(System.currentTimeMillis() + 86_400_000L);
+        appt.updateDate(provided);
+        long expected = appt.getAppointmentDate().getTime();
+        provided.setTime(0L);
+        assertEquals(expected, appt.getAppointmentDate().getTime());
+    }
+
+    @Test
+    void testGetterReturnsDefensiveCopy() {
+        Date provided = new Date(System.currentTimeMillis() + 86_400_000L);
+        Appointment appt = new Appointment("1234567890", provided);
+        long expected = appt.getAppointmentDate().getTime();
+        appt.getAppointmentDate().setTime(0L);
+        assertEquals(expected, appt.getAppointmentDate().getTime());
+    }
 }
