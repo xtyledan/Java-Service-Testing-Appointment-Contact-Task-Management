@@ -62,11 +62,11 @@ public class Appointment {
             throw new IllegalArgumentException(
                     "Cannot make appointment in the past.");
         } else {
-            this.appointmentDate = date;
+            this.appointmentDate = new Date(date.getTime());
         }
     }
 
-    public Date getAppointmentDate() { return appointmentDate; }
+    public Date getAppointmentDate() { return new Date(appointmentDate.getTime()); }
 
     public void updateDescription(String description) {
         if (description == null) {
