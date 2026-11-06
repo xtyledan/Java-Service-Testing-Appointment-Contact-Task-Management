@@ -1,29 +1,40 @@
-# Java Service Testing and Software Quality
+# Java Service Testing | Appointments, Contacts and Tasks
 
-[![Java service tests](https://github.com/xtyledan/Java-Service-Testing-Appointment-Contact-Task-Management/actions/workflows/java-tests.yml/badge.svg)](https://github.com/xtyledan/Java-Service-Testing-Appointment-Contact-Task-Management/actions/workflows/java-tests.yml)
+**Three small Java domain services with validation rules, JUnit 5 tests and a reproducible Maven build.**
 
-**A test-driven Java learning project:** implement three small domain services, enforce input constraints, and run JUnit 5 tests with a reproducible Maven build.
+[![Java tests](https://github.com/xtyledan/Java-Service-Testing-Appointment-Contact-Task-Management/actions/workflows/java-tests.yml/badge.svg)](https://github.com/xtyledan/Java-Service-Testing-Appointment-Contact-Task-Management/actions/workflows/java-tests.yml) · [Source](AppointmentService.java) · [MIT License](LICENSE)
 
-A Java coursework project implementing **appointment, contact, and task management services**, with unit tests focused on validating inputs and checking service behavior.
+## Architecture overview
 
-## What is in this repository?
+```mermaid
+flowchart TB
+    A[JUnit 5 tests] --> B[AppointmentService]
+    A --> C[ContactService]
+    A --> D[TaskService]
+    B --> E[Appointment]
+    C --> F[Contact]
+    D --> G[Task]
+```
 
-| Component | Implementation | Unit tests |
+*This is a source-structure diagram, not a screenshot of a deployed application.*
+
+## Why it exists
+
+A small service can still fail through invalid input or unexpected state changes. This coursework project isolates appointment, contact and task operations so validation rules and expected service behavior can be unit-tested.
+
+## What's included
+
+| Domain | Implementation | Tests |
 | --- | --- | --- |
-| Appointments | `Appointment.java`, `AppointmentService.java` | `AppointmentTest.java`, `AppointmentServiceTest.java` |
-| Contacts | `Contact.java`, `ContactService.java` | `ContactTest.java`, `ContactServiceTest.java` |
-| Tasks | `Task.java`, `TaskService.java` | `TaskTest.java`, `TaskServiceTest.java` |
+| Appointments | [Appointment.java](Appointment.java), [AppointmentService.java](AppointmentService.java) | [AppointmentTest.java](AppointmentTest.java), [AppointmentServiceTest.java](AppointmentServiceTest.java) |
+| Contacts | [Contact.java](Contact.java), [ContactService.java](ContactService.java) | [ContactTest.java](ContactTest.java), [ContactServiceTest.java](ContactServiceTest.java) |
+| Tasks | [Task.java](Task.java), [TaskService.java](TaskService.java) | [TaskTest.java](TaskTest.java), [TaskServiceTest.java](TaskServiceTest.java) |
 
-The services demonstrate basic object management and field-validation rules. The tests use **JUnit Jupiter (JUnit 5)**, including test fixtures and assertions for expected and invalid inputs.
-
-## Technology
-
-- Java
-- JUnit 5 (Jupiter)
+The tests cover representative valid/invalid inputs and service operations. Appointment dates are defensively copied so external changes to a mutable `Date` cannot silently bypass setter validation.
 
 ## Run the tests
 
-Requirements: Java 11 or newer and Apache Maven 3.9+. GitHub Actions runs the suite on Temurin Java 17.
+Requires Java 11+ and Maven (the CI job uses Java 17).
 
 ```bash
 git clone https://github.com/xtyledan/Java-Service-Testing-Appointment-Contact-Task-Management.git
@@ -31,23 +42,12 @@ cd Java-Service-Testing-Appointment-Contact-Task-Management
 mvn test
 ```
 
-The project retains its original flat Java source layout. The supplied `pom.xml` separates `*Test.java` files during compilation and uses JUnit Jupiter with Maven Surefire. [View the automated test runs](https://github.com/xtyledan/Java-Service-Testing-Appointment-Contact-Task-Management/actions/workflows/java-tests.yml).
+**Usage example:** Open [AppointmentTest.java](AppointmentTest.java) to see how a future appointment is constructed and how past or missing dates are rejected. Run the test suite above to exercise the behavior.
 
-**Example:** The `ContactServiceTest.java` tests contact creation and expected field constraints. `AppointmentServiceTest.java` and `TaskServiceTest.java` cover their corresponding domain services. These are unit tests, not a live web demo; no application screenshot would be representative.
+The original source files live at the repository root. [pom.xml](pom.xml) configures compilation and Surefire; [GitHub Actions](https://github.com/xtyledan/Java-Service-Testing-Appointment-Contact-Task-Management/actions/workflows/java-tests.yml) runs the tests.
 
-## Engineering takeaways
+## Tradeoffs and limitations
 
-- Keep domain objects and their managing services separate.
-- Validate required fields and constraints.
-- Test normal inputs and invalid or boundary cases.
-- Use repeatable unit tests to detect regressions when implementation details change.
+The services use in-memory lists rather than a database; there is no persistent storage, REST API, user interface, authentication or production security assessment. This is deliberately a unit-testing project, so a fabricated application screenshot or live-demo URL would misrepresent it. A future extension could add persistence and integration tests.
 
-## Scope and limitations
-
-This is a focused educational implementation, **not** a deployed web application or security-audited product. The repository does not demonstrate authentication, penetration testing, integration testing, or end-to-end testing. A GitHub Actions CI workflow now runs the unit tests. These are potential future extensions, not completed features.
-
-For a broader look at my work, see my [GitHub profile](https://github.com/xtyledan) and [graduate computer science portfolio](https://github.com/xtyledan/ms-computer-science-coursework).
-
-## License
-
-[MIT License](LICENSE).
+**License:** [MIT](LICENSE). [GitHub profile](https://github.com/xtyledan)
